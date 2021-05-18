@@ -1,11 +1,12 @@
 #include<iostream>
+#include<bits/stdc++.h>
 #include <stdlib.h>
 #include<time.h>
 using namespace std;
 class board{
  int p1pos, p2pos;
  int dim;
-  
+ vector<int> snlb,snle;
  int rolladie(); //
  void sandl();  //for fixing snakes and ladders 
  void checksol(int x,int p); //checking snake or ladder
@@ -53,10 +54,31 @@ int board::rolladie(){
     return (rand()%6 + 1);
 }
 void board::checksol(int x,int p){
-  
+  vector<int>::iterator it;
+  it = std::find (snlb.begin(), snlb.end(), x);
+  if(it != snlb.end()){
+    int i = it - snlb.begin();
+    if(p==1)
+      p1pos = snle[i];
+    else
+      p2pos = snle[i];
+  }
 }
 void sandl(){
-  
+ int i=0;
+ while(i!=10)
+  int start = rand()%(dim -1) + 1;
+  int end = rand()%(dim -1) + 1;
+  vector<int>::iterator it;
+  it = std::find (snlb.begin(), snlb.end(), start); // to make sure no two ladder or snake has same starting point
+  if(it == snlb.end()){
+   snlb.push_back(start);
+   snle.push_back(end);
+   i++;
+  }
+  else 
+   continue;
+ }
 }
 int main(){
  board game1;
