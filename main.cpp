@@ -33,7 +33,7 @@ class board{
   if(p1pos == dim)
     cout<<"Player 1 wins!\n";
   else
-    cout<<"Player 2 wins!\n"
+    cout<<"Player 2 wins!\n";
  }
  public:
  board(){   //constructor
@@ -64,13 +64,13 @@ void board::checksol(int x,int p){
       p2pos = snle[i];
   }
 }
-void sandl(){
+void board::sandl(){
  int i=0;
- while(i!=10)
+ while(i!=10){
   int start = rand()%(dim -1) + 1;
   int end = rand()%(dim -1) + 1;
   vector<int>::iterator it;
-  it = std::find (snlb.begin(), snlb.end(), start); // to make sure no two ladder or snake has same starting point
+  it = std::find (snlb.begin(),snlb.end(),start); // to make sure no two ladder or snake has same starting point
   if(it == snlb.end()){
    snlb.push_back(start);
    snle.push_back(end);
